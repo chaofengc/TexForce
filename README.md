@@ -58,17 +58,33 @@ img = pipe(prompt).images[0]
 Here are some example results:
 
 <table>
-<tr>
-    <td width="25%" align="center">SDv1.4</td>
-    <td width="25%" align="center">ReFL</td>
-    <td width="25%" align="center">TexForce</td>
-    <td width="25%" align="center">ReFL+TexForce</td>
-</tr>
+<thead>
+  <tr>
+    <th width="25%">SDv1.4</th>
+    <th width="25%">ReFL</th>
+    <th width="25%">TexForce</th>
+    <th width="25%">ReFL+TexForce</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td colspan="4">
+        <img src='assets/image_0021.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+        <img src='assets/image_0058.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+        <img src='assets/image_0099.jpg'>
+    </td>
+  </tr>
+</tbody>
 </table>
 
-![img1](assets/image_0021.jpg)
-![img1](assets/image_0058.jpg)
-![img2](assets/image_0099.jpg)
 
 ## Citation
 
