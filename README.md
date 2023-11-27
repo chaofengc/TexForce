@@ -44,7 +44,7 @@ def load_model_weights(pipe, weight_path, model_type):
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model_id = "CompVis/stable-diffusion-v1-4"
-pipe = StableDiffusionPipeline.from_pretrained(model_id)
+pipe = StableDiffusionPipeline.from_pretrained(model_id, dtype=torch.float16)
 pipe = pipe.to("cuda")
 pipe.scheduler = DDIMScheduler.from_config(pipe.scheduler.config)
 
