@@ -1,2 +1,4 @@
 diffusers
 peft
+torch
+torchvision

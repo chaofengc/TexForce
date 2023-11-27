@@ -32,6 +32,7 @@ You may simply load the pretrained lora weights with the following code block to
 from diffusers import StableDiffusionPipeline
 from diffusers import DDIMScheduler 
 from peft import PeftModel
+import torch
 
 def load_model_weights(pipe, weight_path, model_type):
     if model_type == 'text+lora':
