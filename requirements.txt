@@ -1,4 +1,4 @@
-diffusers
+diffusers==0.16.0
 peft
 torch
 torchvision
