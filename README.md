@@ -4,7 +4,7 @@ Official PyTorch codes for paper [Enhancing Diffusion Models with Text-Encoder R
 
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/)
-<a href="https://colab.research.google.com/drive/1Yzb4o5OKjK46jbQ-_HGFOVJOPMVtJQjw?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a> 
+<a href="https://colab.research.google.com/drive/1pC6lzFR4hohwWyBgnkeZUghi2jqjl9gI?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a> 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=chaofengc/TexForce)
 
 ![teaser_img](./assets/fig_teaser.jpg)
@@ -90,11 +90,13 @@ Here are some example results:
 
 If you find this code useful for your research, please cite our paper:
 ```
-@article{,
+@article{chen2023texforce,
   title={Enhancing Diffusion Models with Text-Encoder Reinforcement Learning},
-  author={},
-  journal={},
-  year={2023}
+  author={Chaofeng Chen and Annan Wang and Haoning Wu and Liang Liao and Wenxiu Sun and Qiong Yan and Weisi Lin},
+  year={2023},
+  eprint={},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV}
 }
 ```
 
