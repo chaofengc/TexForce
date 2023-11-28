@@ -3,7 +3,7 @@
 Official PyTorch codes for paper [Enhancing Diffusion Models with Text-Encoder Reinforcement Learning](https://arxiv.org/abs/)
 
 
-[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/)
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2311.15657)
 <a href="https://colab.research.google.com/drive/1pC6lzFR4hohwWyBgnkeZUghi2jqjl9gI?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a> 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=chaofengc/TexForce)
 
@@ -95,7 +95,7 @@ If you find this code useful for your research, please cite our paper:
   title={Enhancing Diffusion Models with Text-Encoder Reinforcement Learning},
   author={Chaofeng Chen and Annan Wang and Haoning Wu and Liang Liao and Wenxiu Sun and Qiong Yan and Weisi Lin},
   year={2023},
-  eprint={},
+  eprint={2311.15657},
   archivePrefix={arXiv},
   primaryClass={cs.CV}
 }
