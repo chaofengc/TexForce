@@ -70,12 +70,27 @@ Here are some example results:
 <tbody>
   <tr>
     <td colspan="4">
+      astronaut drifting afloat in space, in the darkness away from anyone else, alone, black background dotted with stars, realistic
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
         <img src='assets/image_0021.jpg'>
     </td>
   </tr>
   <tr>
     <td colspan="4">
+      portrait of a cute cyberpunk cat, realistic, professional
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
         <img src='assets/image_0058.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      a coffee mug made of cardboard
     </td>
   </tr>
   <tr>
