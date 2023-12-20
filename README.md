@@ -25,6 +25,79 @@ source activate texforce
 pip3 install -r requirements.txt
 ```
 
+## Results on SD-Turbo
+
+We applied our method to the recent model [sdturbo](https://huggingface.co/stabilityai/sd-turbo). The model is trained with [Q-Instruct](https://github.com/Q-Future/Q-Instruct) feedback through direct back-propagation to save training time.
+
+Here are some example results:
+
+<table>
+<thead>
+  <tr>
+    <th width="50%">sd-turbo</th>
+    <th width="50%">sd-turbo + TexForce</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td colspan="2">
+      A photo of a cat.
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <img src='assets/image_001_sdturbo.jpg'>
+    </td>
+    <td>
+        <img src='assets/image_001_sdturbo_texforce.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      A photo of a dog.
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <img src='assets/image_002_sdturbo.jpg'>
+    </td>
+    <td>
+        <img src='assets/image_002_sdturbo_texforce.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      A photo of a woman face.
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <img src='assets/image_003_sdturbo.jpg'>
+    </td>
+    <td>
+        <img src='assets/image_003_sdturbo_texforce.jpg'>
+    </td>
+  </tr>
+
+</tbody>
+</table>
+
+### Test codes with sd-turbo
+
+Requires:
+- Latest diffusers with `AutoPipelineForText2Image` class.
+
+```
+from diffusers import AutoPipelineForText2Image
+from peft import PeftModel
+
+pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
+pipe = pipe.to("cuda")
+PeftModel.from_pretrained(pipe.text_encoder, './lora_weights/sdturbo_qinstruct_texforce/')
+
+img = pipe(prompt=pt, num_inference_steps=1, guidance_scale=0.0).images[0]
+```
+
 ## Quick Test
 
 You may simply load the pretrained lora weights with the following code block to improve performance of original stable diffusion model:
