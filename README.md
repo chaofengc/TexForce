@@ -2,9 +2,9 @@
 
 Official PyTorch codes for paper [Enhancing Diffusion Models with Text-Encoder Reinforcement Learning](https://arxiv.org/abs/2311.15657)
 
-
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2311.15657)
 <a href="https://colab.research.google.com/drive/1pC6lzFR4hohwWyBgnkeZUghi2jqjl9gI?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a> 
+[![huggingface](https://img.shields.io/badge/HuggingFace-model-red.svg)](https://huggingface.co/chaofengc/sd-turbo_texforce)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=chaofengc/TexForce)
 
 ![teaser_img](./assets/fig_teaser.jpg)
@@ -38,7 +38,7 @@ import torch
 
 pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
 pipe = pipe.to("cuda")
-PeftModel.from_pretrained(pipe.text_encoder, './lora_weights/sdturbo_qinstruct_texforce/')
+PeftModel.from_pretrained(pipe.text_encoder, 'chaofengc/sd-turbo_texforce')
 
 pt = ['a photo of a cat.']
 img = pipe(prompt=pt, num_inference_steps=1, guidance_scale=0.0).images[0]
