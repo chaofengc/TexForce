@@ -27,7 +27,22 @@ pip3 install -r requirements.txt
 
 ## Results on SD-Turbo
 
-We applied our method to the recent model [sdturbo](https://huggingface.co/stabilityai/sd-turbo). The model is trained with [Q-Instruct](https://github.com/Q-Future/Q-Instruct) feedback through direct back-propagation to save training time.
+We applied our method to the recent model [sdturbo](https://huggingface.co/stabilityai/sd-turbo). The model is trained with [Q-Instruct](https://github.com/Q-Future/Q-Instruct) feedback through direct back-propagation to save training time. Test with the following codes
+
+```
+## Note: sdturbo requires latest diffusers>=0.24.0 with AutoPipelineForText2Image class
+
+from diffusers import AutoPipelineForText2Image
+from peft import PeftModel
+import torch
+
+pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
+pipe = pipe.to("cuda")
+PeftModel.from_pretrained(pipe.text_encoder, './lora_weights/sdturbo_qinstruct_texforce/')
+
+pt = ['a photo of a cat.']
+img = pipe(prompt=pt, num_inference_steps=1, guidance_scale=0.0).images[0]
+```
 
 Here are some example results:
 
@@ -81,23 +96,6 @@ Here are some example results:
 
 </tbody>
 </table>
-
-### Test codes with sd-turbo
-
-**Note: `sdturbo` requires latest diffusers with `AutoPipelineForText2Image` class.**
-
-```
-from diffusers import AutoPipelineForText2Image
-from peft import PeftModel
-import torch
-
-pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
-pipe = pipe.to("cuda")
-PeftModel.from_pretrained(pipe.text_encoder, './lora_weights/sdturbo_qinstruct_texforce/')
-
-pt = ['a photo of a cat.']
-img = pipe(prompt=pt, num_inference_steps=1, guidance_scale=0.0).images[0]
-```
 
 ## Quick Test
 
