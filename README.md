@@ -84,17 +84,17 @@ Here are some example results:
 
 ### Test codes with sd-turbo
 
-Requires:
-- Latest diffusers with `AutoPipelineForText2Image` class.
 
 ```
 from diffusers import AutoPipelineForText2Image
 from peft import PeftModel
+import torch
 
 pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
 pipe = pipe.to("cuda")
 PeftModel.from_pretrained(pipe.text_encoder, './lora_weights/sdturbo_qinstruct_texforce/')
 
+pt = ['a photo of a cat.']
 img = pipe(prompt=pt, num_inference_steps=1, guidance_scale=0.0).images[0]
 ```
 
