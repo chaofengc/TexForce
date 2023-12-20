@@ -84,6 +84,7 @@ Here are some example results:
 
 ### Test codes with sd-turbo
 
+**Note: `sdturbo` requires latest diffusers with `AutoPipelineForText2Image` class.**
 
 ```
 from diffusers import AutoPipelineForText2Image
