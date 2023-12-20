@@ -82,7 +82,7 @@ Here are some example results:
   </tr>
   <tr>
     <td colspan="2">
-      A photo of a woman face.
+      A photo of a boy, colorful.
     </td>
   </tr>
   <tr>
