@@ -25,6 +25,72 @@ source activate texforce
 pip3 install -r requirements.txt
 ```
 
+## Results on SDXL-Turbo
+
+We also applied our method to the recent model [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). The model is trained with [Q-Instruct](https://github.com/Q-Future/Q-Instruct) feedback through direct back-propagation to save training time. Test with the following codes
+
+```
+## Note: sdturbo requires latest diffusers installed from source with the following command
+git clone https://github.com/huggingface/diffusers
+cd diffusers
+pip install -e .
+```
+```
+from diffusers import AutoPipelineForText2Image
+import torch
+
+pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
+pipe = pipe.to("cuda")
+pipe.load_lora_weights('chaofengc/sdxl-turbo_texforce')
+
+pt = ['a photo of a cat.']
+img = pipe(prompt=pt, num_inference_steps=1, guidance_scale=0.0).images[0]
+```
+
+Here are some example results:
+
+<table>
+<thead>
+  <tr>
+    <th width="50%">sdxl-turbo</th>
+    <th width="50%">sdxl-turbo + TexForce</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td colspan="2">
+      A photo of a cat.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+        <img src='assets/image_sdxlturbo_001.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      An astronaut riding a horse.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+        <img src='assets/image_sdxlturbo_002.jpg'>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      water bottle.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+        <img src='assets/image_sdxlturbo_003.jpg'>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
 ## Results on SD-Turbo
 
 We applied our method to the recent model [sdturbo](https://huggingface.co/stabilityai/sd-turbo). The model is trained with [Q-Instruct](https://github.com/Q-Future/Q-Instruct) feedback through direct back-propagation to save training time. Test with the following codes
