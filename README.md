@@ -27,7 +27,7 @@ pip3 install -r requirements.txt
 
 ## Results on SDXL-Turbo
 
-We also applied our method to the recent model [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). The model is trained with [Q-Instruct](https://github.com/Q-Future/Q-Instruct) feedback through direct back-propagation to save training time. Test with the following codes
+We also applied our method to the recent model [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). The model is trained with [ImageReward](https://github.com/THUDM/ImageReward) feedback through direct back-propagation to save training time. Test with the following codes
 
 ```
 ## Note: sdturbo requires latest diffusers installed from source with the following command
