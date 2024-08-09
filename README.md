@@ -292,13 +292,11 @@ The supported prompts and reward functions are:
 
 If you find this code useful for your research, please cite our paper:
 ```
-@article{chen2023texforce,
+@inproceedings{chen2024texforce,
   title={Enhancing Diffusion Models with Text-Encoder Reinforcement Learning},
   author={Chaofeng Chen and Annan Wang and Haoning Wu and Liang Liao and Wenxiu Sun and Qiong Yan and Weisi Lin},
-  year={2023},
-  eprint={2311.15657},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV}
+  year={2024},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
 }
 ```
 
