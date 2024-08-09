@@ -30,7 +30,7 @@ pip3 install -r requirements.txt
 We also applied our method to the recent model [sdxl-turbo](https://huggingface.co/stabilityai/sdxl-turbo). The model is trained with [ImageReward](https://github.com/THUDM/ImageReward) feedback through direct back-propagation to save training time. Test with the following codes
 
 ```
-## Note: sdturbo requires latest diffusers installed from source with the following command
+## Note: sdturboxl requires latest diffusers installed from source with the following command
 git clone https://github.com/huggingface/diffusers
 cd diffusers
 pip install -e .
@@ -163,7 +163,13 @@ Here are some example results:
 </tbody>
 </table>
 
-## Quick Test
+## Results on SD-1.4, SD-1.5, SD-2.1
+
+Due to code compatibility, you need to install the following diffusers first:
+```
+pip uninstall diffusers
+pip install diffusers==0.16.0
+```
 
 You may simply load the pretrained lora weights with the following code block to improve performance of original stable diffusion model:
 ```
@@ -240,6 +246,48 @@ Here are some example results:
 </table>
 
 
+## Training
+
+We rewrite the training codes based on [trl](https://github.com/huggingface/trl) with the latest diffusers library. 
+> [!NOTE]  
+> The latest diffusers support simple loading of lora weights with `pipeline.load_lora_weights` after training.
+
+You may train the model with the following command:
+
+### Example script for single prompt training
+```
+accelerate launch --num_processes 2 src/train_ddpo.py \
+    --mixed_precision="fp16" \
+    --sample_num_steps 50 --train_timestep_fraction 0.5 \
+    --num_epochs 40 \
+    --sample_batch_size 4 --sample_num_batches_per_epoch 64 \
+    --train_batch_size 4 --train_gradient_accumulation_steps 1 \
+    --prompt="single" --single_prompt_type="hand" --reward_list="handdetreward" \
+    --per_prompt_stat_tracking=True \
+    --tracker_project_name="texforce_hand" \
+    --log_with="tensorboard"
+```
+The supported prompts and reward functions are listed below:
+- prompts: `hand`, `face`, `color`, `count`, `comp`, `location`
+- rewards: `handdetreward`, `topiq_nr-face`, `imagereward` 
+
+### Example script for complex multi-prompt training
+```
+accelerate launch --num_processes 2 src/train_ddpo.py \
+    --mixed_precision="fp16" \
+    --sample_num_steps 50 --train_timestep_fraction 0.5 \
+    --num_epochs 50 \
+    --sample_batch_size 4 --sample_num_batches_per_epoch 128 \
+    --train_batch_size 4 --train_gradient_accumulation_steps 4 \
+    --prompt="imagereward" --single_prompt_type="hand" --reward_list="imagereward" \
+    --per_prompt_stat_tracking=True \
+    --tracker_project_name="texforce_imgreward" \
+    --log_with="tensorboard"
+``` 
+The supported prompts and reward functions are:
+- prompts: `imagereward`, `hps`
+- rewards: `imagereward`, `hpsreward`, `laion_aes`
+
 ## Citation
 
 If you find this code useful for your research, please cite our paper:
@@ -259,3 +307,8 @@ If you find this code useful for your research, please cite our paper:
 This work is licensed under [NTU S-Lab License 1.0](./LICENCE_S-Lab) and a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+
+## Acknowledgement
+
+This project is largely based on [trl](https://github.com/huggingface/trl). The hand detection codes are taken from [Unified-Gesture-and-Fingertip-Detection](https://github.com/MahmudulAlam/Unified-Gesture-and-Fingertip-Detection). Many thanks to their great work :hugs:!

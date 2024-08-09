@@ -2,6 +2,8 @@
 datasets/*
 results/*
 experiments/
+save*
+log*
 tb_logger/*
 tb_logger_archived/*
 wandb/*
