@@ -279,7 +279,7 @@ accelerate launch --num_processes 2 src/train_ddpo.py \
     --num_epochs 50 \
     --sample_batch_size 4 --sample_num_batches_per_epoch 128 \
     --train_batch_size 4 --train_gradient_accumulation_steps 4 \
-    --prompt="imagereward" --single_prompt_type="hand" --reward_list="imagereward" \
+    --prompt="imagereward" --reward_list="imagereward" \
     --per_prompt_stat_tracking=True \
     --tracker_project_name="texforce_imgreward" \
     --log_with="tensorboard"
