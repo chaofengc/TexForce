@@ -39,7 +39,7 @@ pip install -e .
 from diffusers import AutoPipelineForText2Image
 import torch
 
-pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sd-turbo", torch_dtype=torch.float16, variant="fp16")
+pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float16, variant="fp16")
 pipe = pipe.to("cuda")
 pipe.load_lora_weights('chaofengc/sdxl-turbo_texforce')
 
