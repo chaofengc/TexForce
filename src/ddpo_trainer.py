@@ -145,9 +145,10 @@ class DDPOTrainer(BaseTrainer):
         is_using_tensorboard = config.log_with is not None and config.log_with == "tensorboard"
 
         if self.accelerator.is_main_process:
-            if os.path.exists(accelerator_project_config.logging_dir):
+            log_dir = os.path.join(accelerator_project_config.logging_dir, self.config.tracker_project_name)
+            if os.path.exists(log_dir):
                 os.makedirs('./log_archive', exist_ok=True)
-                os.system(f"mv {accelerator_project_config.logging_dir} ./log_archive/{self.config.tracker_project_name}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+                os.system(f"mv {log_dir} ./log_archive/{self.config.tracker_project_name}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
 
             self.accelerator.init_trackers(
                 self.config.tracker_project_name,
