@@ -642,7 +642,7 @@ class DDPOTrainer(BaseTrainer):
                         )
                     self.optimizer.step()
                     self.optimizer.zero_grad()
-                    self.scheduler.step()
+                    self.scheduler.step(global_step + 1)
 
                 # Checks if the accelerator has performed an optimization step behind the scenes
                 if self.accelerator.sync_gradients:
