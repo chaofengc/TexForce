@@ -109,7 +109,10 @@ class MultiReward(nn.Module):
             elif rname in ['pickscore', 'imagereward', 'hpsreward']:
                 tmp_score = reward_func(images, prompts, **kwargs)
             else:
+                reward_func.dummy_param = reward_func.dummy_param.to(images.device)
                 tmp_score = reward_func(images, **kwargs)
+                if rname == 'topiq_iaa':
+                    tmp_score = tmp_score / 10
 
             score += tmp_score.squeeze()
 

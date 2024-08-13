@@ -259,10 +259,18 @@ class DDPOTrainer(BaseTrainer):
         if not is_async:
             rewards = []
             for images, prompts, prompt_metadata in prompt_image_pairs:
-                reward, reward_metadata = self.reward_fn(images, prompts, prompt_metadata)
+
+                # calculate rewards one-by-one to avoid OOM
+                tmp_rewards = []
+                tmp_reward_metadata = []
+                for i in range(len(images)):
+                    reward, reward_metadata = self.reward_fn(images[[i]], [prompts[i]], prompt_metadata)
+                    tmp_rewards.append(reward)
+                    tmp_reward_metadata.append(reward_metadata)
+
                 rewards.append(
                     (
-                        torch.as_tensor(reward, device=self.accelerator.device),
+                        torch.as_tensor(tmp_rewards, device=self.accelerator.device),
                         reward_metadata,
                     )
                 )

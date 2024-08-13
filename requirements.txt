@@ -1,7 +1,7 @@
 trl
 image-reward
 git+https://github.com/tgxs002/HPSv2.git
-pyiqa
+pyiqa>=0.1.12
 diffusers
 peft
 einops
@@ -14,3 +14,4 @@ fastprogress
 matplotlib
 tqdm
 tensorflow-cpu
+lightning-bolts
